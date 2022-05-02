@@ -11,11 +11,15 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
+            overflow: hidden;
             /*border: none;*/
             border: 2px solid black;
             background-repeat: no-repeat;
+            /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3crect width='100%' height='100%' stroke='' fill='rgba(255, 255, 255, 1)'/%3e%3c/svg%3e"); */
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' stroke='' fill='rgba(255, 255, 255, 1)'/%3e%3c/svg%3e");
-            transition: 300ms ease-in-out;
+            
+            -webkit-transition: all 300ms ease-in-out;
+            transition: all 300ms ease-in-out;
         }
 
         input[type="checkbox"].toggle, input[type="checkbox"].toggle.md {
@@ -78,8 +82,8 @@
             border-radius: 40px;
             background-size: 40px;
         }
-
-        input[type="checkbox"].toggle, input[type="checkbox"].toggle:not(:checked) {
+        
+        input[type="checkbox"].toggle:not(:checked) {
             /* TODO: Checked Side = Left || Right */
             background-position: left center;
             background-color: darkgray;
@@ -96,91 +100,86 @@
             background-color: lightgray;
         }
 
-        @keyframes showCheckedContent {
-            0% {
-                opacity: 1;
-                /*content: attr(data-label-checked);*/
-                /*content: attr(data-label-unchecked);*/
-                /*content: "";*/
-            }
-            50% {
-                opacity: 0;
-                /*content: attr(data-label-checked);*/
-                /*content: attr(data-label-unchecked);*/
-                content: "";
-            }
-            100% {
-                opacity: 1;
-                content: attr(data-label-checked);
-                /*content: attr(data-label-unchecked);*/
-                /*content: "";*/
-            }
+        input[type="checkbox"].toggle:before {
+            content: "";
         }
-        @keyframes showUncheckedContent {
+
+        @keyframes showUnchecked {
             0% {
-                opacity: 1;
-                content: attr(data-label-checked);
-                /*content: attr(data-label-unchecked);*/
-                /*content: "";*/
-            }
-            50% {
                 opacity: 0;
-                /*content: attr(data-label-checked);*/
-                /*content: attr(data-label-unchecked);*/
+                content: "";
+            }
+            75% {
+                opacity: 0;
                 content: "";
             }
             100% {
                 opacity: 1;
-                /*content: attr(data-label-checked);*/
                 content: attr(data-label-unchecked);
-                /*content: "";*/
             }
         }
-        /*input[type="checkbox"].toggle:before {*/
-        /*    !*    *!*/
-        /*}*/
-        /*input[type="checkbox"].toggle:not(:checked):after {*/
         input[type="checkbox"].toggle:not(:checked):before {
-            /*content: "";*/
             content: attr(data-label-unchecked);
-            /*content: attr(data-label-checked);*/
+            width: 100%;
             height: 100%;
-            width: 90%;
+            position: relative;
+            right: 4px;
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            white-space: nowrap;
-            text-wrap: none;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            /*animation: showCheckedContent 1s linear forwards;*/
-            /*-webkit-transition: opacity 1s ease;*/
-            /*transition: opacity 1s ease;*/
-            /*transition: all 300ms ease-in-out;*/
+
+            animation-fill-mode: forwards;
+            animation: showUnchecked .5s linear forwards;
         }
 
+        @keyframes showChecked {
+            0% {
+                opacity: 0;
+                content: "";
+            }
+            75% {
+                opacity: 0;
+                content: "";
+            }
+            100% {
+                opacity: 1;
+                content: attr(data-label-checked);
+            }
+        }
         input[type="checkbox"].toggle:checked:before {
-            /*content: "";*/
-            /*content: attr(data-label-unchecked);*/
             content: attr(data-label-checked);
+            width: 100%;
             height: 100%;
-            width: 90%;
+            position: relative;
+            left: 4px;
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            white-space: nowrap;
-            text-wrap: none;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            /*animation: showUncheckedContent 1s linear forwards;*/
-            /*-webkit-transition: opacity 1s ease;*/
-            /*transition: opacity 1s ease;*/
-            /*transition: all 300ms ease-in-out;*/
+
+            animation-fill-mode: forwards;
+            animation: showChecked .5s linear forwards;
         }
 
+
+        @keyframes showIndeterminate {
+            0% {
+                opacity: 0;
+                content: "";
+            }
+            75% {
+                opacity: 0;
+                content: "";
+            }
+            100% {
+                opacity: 1;
+                content: "";
+            }
+        }
         input[type="checkbox"].toggle:indeterminate:before {
             content: "";
-            transition: all 300ms ease-in-out;
+
+            animation-fill-mode: forwards;
+            animation: showIndeterminate .5s linear forwards;
         }
 
 
@@ -210,105 +209,20 @@
             /*    */
         }
 
-        .toggle-checkbox {
-            /*width: 25px;*/
+        .toggle-checkbox, .toggle-button, .toggle-radio {
             display: flex;
             align-items: center;
         }
         .toggle-checkbox label {
-            /*font-size: xxx-large;*/
+            /* font-size: xxx-large; */
         }
 
-        @keyframes changeContent {
-            0% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-                content: "See? I've changed seemlessly!";
-            }
-        }
-        div.animation:before{
-            content: "HOVER OVER ME!";
-            background: green;
-            transition: all 1s linear;
-            animation-direction: reverse;
-        }
-        div.animation:hover:before{
-            animation-fill-mode: forwards;
-            animation: changeContent 3s linear forwards;
-            background: orange;
+        input[type="button"].toggle span {
+            background-color: white;
+            border-radius: 100%;
         }
     </style>
     <!--
-    <style>
-        input[type="button"].toggle, button[type="button"].toggle {
-            max-width: 80px;
-            width: 80px;
-            min-width: 80px;
-            max-height: 40px;
-            height: 40px;
-            min-height: 40px;
-            background-color: gray;
-            border: none;
-            border-radius: 20px;
-
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            clear: both;
-            float: left;
-        }
-
-        input[type="button"].toggle span, button[type="button"].toggle span {
-            background: #ffffff;
-            border: 1px solid #dddddd;
-            border-radius: 50%;
-            height: 30px;
-            width: 30px;
-            top: 2px;
-            left: 43px;
-            -webkit-transition: 0.4s;
-            -o-transition: 0.4s;
-            transition: 0.4s;
-
-            display: inline-block;
-            font-weight: bold;
-            pointer-events: none;
-            text-transform: uppercase;
-            position: absolute;
-        }
-
-        input[type="button"].toggle span, button.toggle span::before {
-            content: 'TEST';
-            display: block;
-            color: red;
-            position: absolute;
-            left: 5px;
-            top: 5px;
-        }
-
-        /*input[type="button"].toggle[data-state='checked'] span::before {*/
-        /*    content: 'ON';*/
-        /*    display: block;*/
-        /*    color: #464646;*/
-        /*    position: absolute;*/
-        /*    left: -32px;*/
-        /*    top: 7px;*/
-        /*}*/
-
-        /*input[type="button"].toggle[data-state='unchecked'] span::after {*/
-        /*    content: 'OFF';*/
-        /*    display: block;*/
-        /*    color: #464646;*/
-        /*    position: absolute;*/
-        /*    right: -36px;*/
-        /*    top: 7px;*/
-        /*}*/
-    </style>
     <style>
         input[type="radio"].toggle {
             /*-webkit-appearance: none;*/
@@ -375,125 +289,6 @@
     -->
 </head>
 <body>
-<!--
-<style>
-    .switch {
-        display: flex;
-        align-items: center;
-    }
-    .switch .toggle {
-        position: relative;
-        display: inline-block;
-        width: 150px;
-        height: 50px;
-    }
-    .switch .toggle input[type="checkbox"] {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        /*width: 0;*/
-        /*height: 0;*/
-        /*opacity: 0;*/
-        /*display: none;*/
-    }
-    .switch .toggle .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-
-        transition: all .4s ease-out;
-    }
-
-    .switch .toggle input[type="checkbox"]:not(:checked) + .slider {
-        background-color: lightgray;
-    }
-    .switch .toggle input[type="checkbox"]:checked + .slider {
-        background-color: darkgray;
-    }
-    .switch .toggle input[type="checkbox"]:not(:checked) + .slider:before {
-        position: absolute;
-        content: "";
-        width: 40%;
-        height: 40px;
-        left: 5px;
-        /*right: unset;*/
-        bottom: 5px;
-        background-color: white;
-        /*transition: all .4s ease-out;*/
-    }
-    /*.switch .toggle input[type="checkbox"] + .slider:after {*/
-    /*    position: absolute;*/
-    /*    content: "";*/
-    /*    background: none;*/
-
-    /*    transition: all .4s ease-out;*/
-    /*}*/
-    /*.switch .toggle input[type="checkbox"]:checked + .slider:before {*/
-    /*    position: absolute;*/
-    /*    content: "";*/
-    /*    background: none;*/
-
-    /*    transition: all .4s ease-out;*/
-    /*}*/
-    .switch .toggle input[type="checkbox"]:checked + .slider:before {
-        position: absolute;
-        content: "";
-        width: 40%;
-        height: 40px;
-        /*left: unset;*/
-        right: 5px;
-        bottom: 5px;
-        background-color: white;
-        /*transition: all .4s ease-out;*/
-    }
-    /*.switch .toggle input[type="checkbox"]:checked + .slider:after {*/
-    /*    position: absolute;*/
-    /*    content: "";*/
-    /*    width: 40px;*/
-    /*    height: 40px;*/
-    /*    left: unset;*/
-    /*    right: 5px;*/
-    /*    bottom: 5px;*/
-    /*    background-color: white;*/
-    /*}*/
-    .switch .toggle .slider label {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .switch .toggle .slider label span {
-        flex: 1;
-        /*flex-wrap: nowrap;*/
-        padding: 0 5px 0 5px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-</style>
-<div class="switch" onclick="document.getElementById('switch-toggle').checked = !document.getElementById('switch-toggle').checked;">
-    <label>Left</label>
-    <div class="toggle">
-        <input type="checkbox" id="switch-toggle" onchange="console.log(`CHECKBOX: ${this.checked}`)">
-        <span class="slider">
-            <label><span>Left testing the long text</span><span>Right</span></label>
-        </span>
-    </div>
-    <label>Right</label>
-</div>
--->
-
-<br />
-<br />
-<br />
-
-<div class="animation" />
-
 
 <!--<input class="toggle xs" type="checkbox" />-->
 <!--<input class="toggle xs" type="checkbox" data-state="indeterminate" />-->
@@ -544,7 +339,9 @@
            onfocus="console.log(`FOCUS: ${this.checked}`)"
            onblur="console.log(`BLUR: ${this.checked}`)"
            checked
-    />
+    >
+        <span></span>
+    </input>
     <!-- TODO: Checked Side = Left || Right -->
     <label for="toggle-1-input" id="toggle-1-label-right"
            onclick="/*event.preventDefault();*/
@@ -555,37 +352,67 @@
                }, 0);"
     >On</label>
 </div>
-<input type="button" onclick="console.table(document.getElementById('toggle-1-input').dataset)" value="Toggle Data" />
 
+<br />
+<br />
+<br />
 
+<style>
+    [data-action='aria-switch'][aria-checked='true'] {
+        background: #42dc42;
+    }
+    input[type="button"].toggle {
+        background: #f4f4f4;
+        border-radius: 32px;
+        display: inline-block;
+        position: relative;
+        transition: background 0.1s ease-in-out;
+        border: 0;
+        width: 75px;
+        min-height: 34px;
+        overflow: hidden;
+        clear: both;
+        float: left;
+    }
+
+    input[type="button"].toggle span {
+        border-radius: 50%;
+        display: inline-block;
+        font-weight: bold;
+        pointer-events: none;
+        text-transform: uppercase;
+        position: absolute;
+    }
+    input[type="button"][data-checked="true"] .toggle span {
+        background: white;
+        border: 1px solid gray;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        top: 2px;
+        left: 43px;
+        transition: 0.4s;
+    }
+</style>
 <div class="toggle-button">
     <label>Off</label>
-    <!-- TODO: Labels inside of toggle - Left && Right -->
-    <input class="toggle" type="button" data-state="unchecked"
-           ondblclick="this.dataset.state = 'indeterminate'"
-           onclick="this.dataset.state = this.dataset.state === 'checked' ? 'unchecked' : this.dataset.state === 'unchecked' ? 'checked' : 'indeterminate';"
-    >
+    <input class="toggle" type="button" data-checked="false" onclick="this.dataset.checked = this.dataset.checked === 'true' ? 'true' : 'false';">
         <span></span>
     </input>
     <label>On</label>
 </div>
-<div class="toggle-button">
-    <label>Off</label>
-    <!-- TODO: Labels inside of toggle - Left && Right -->
-    <button class="toggle" type="button" data-state="unchecked"
-           ondblclick="this.dataset.state = 'indeterminate'"
-           onclick="this.dataset.state = this.dataset.state === 'checked' ? 'unchecked' : this.dataset.state === 'unchecked' ? 'checked' : 'indeterminate';"
-    >
-        <span></span>
-    </button>
-    <label>On</label>
-</div>
 
 <br />
 <br />
 <br />
 
 
+<button type="button" data-action="aria-switch" aria-label="Toggle Text" aria-checked="true" role="switch" class="text">
+    <span></span>
+  </button>
+
+
+  
 <div class="toggle-radio" id="toggle-2">
     <div id="toggle-2-option-1" class="toggle-radio-left selected" onclick="this.classList.add('selected'); document.getElementById('toggle-2-option-2').classList.remove('selected');">
         <label for="toggle-2-input-1">Off</label>
