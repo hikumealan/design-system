@@ -7,7 +7,7 @@
         html, body {
             background-color: red;
         }
-        input[type="checkbox"].toggle {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
@@ -22,7 +22,7 @@
             transition: all 300ms ease-in-out;
         }
 
-        input[type="checkbox"].toggle, input[type="checkbox"].toggle.md {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle, fieldset.toggle-checkbox input[type="checkbox"].toggle.md {
             /*max-width: 300px;*/
             max-width: 50px;
             /*width: 100%;*/
@@ -34,7 +34,7 @@
             border-radius: 25px;
             background-size: 25px;
         }
-        input[type="checkbox"].toggle.xs {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle.xs {
             /*max-width: 300px;*/
             max-width: 20px;
             /*width: 100%;*/
@@ -46,7 +46,7 @@
             border-radius: 10px;
             background-size: 10px;
         }
-        input[type="checkbox"].toggle.sm {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle.sm {
             /*max-width: 300px;*/
             max-width: 40px;
             /*width: 100%;*/
@@ -58,7 +58,7 @@
             border-radius: 10px;
             background-size: 20px;
         }
-        input[type="checkbox"].toggle.lg {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle.lg {
             /*max-width: 300px;*/
             max-width: 60px;
             /*width: 100%;*/
@@ -70,7 +70,7 @@
             border-radius: 30px;
             background-size: 30px;
         }
-        input[type="checkbox"].toggle.xl {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle.xl {
             /*max-width: 300px;*/
             max-width: 80px;
             /*width: 100%;*/
@@ -83,24 +83,24 @@
             background-size: 40px;
         }
         
-        input[type="checkbox"].toggle:not(:checked) {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:not(:checked) {
             /* TODO: Checked Side = Left || Right */
             background-position: left center;
             background-color: darkgray;
         }
 
-        input[type="checkbox"].toggle:checked {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:checked {
             /* TODO: Checked Side = Left || Right */
             background-position: right center;
             background-color: gray;
         }
 
-        input[type="checkbox"].toggle:indeterminate {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:indeterminate {
             background-position: center center;
             background-color: lightgray;
         }
 
-        input[type="checkbox"].toggle:before {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:before {
             content: "";
         }
 
@@ -118,7 +118,7 @@
                 content: attr(data-label-unchecked);
             }
         }
-        input[type="checkbox"].toggle:not(:checked):before {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:not(:checked):before {
             content: attr(data-label-unchecked);
             width: 100%;
             height: 100%;
@@ -146,7 +146,7 @@
                 content: attr(data-label-checked);
             }
         }
-        input[type="checkbox"].toggle:checked:before {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:checked:before {
             content: attr(data-label-checked);
             width: 100%;
             height: 100%;
@@ -175,7 +175,7 @@
                 content: "";
             }
         }
-        input[type="checkbox"].toggle:indeterminate:before {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:indeterminate:before {
             content: "";
 
             animation-fill-mode: forwards;
@@ -183,44 +183,171 @@
         }
 
 
-        input[type="checkbox"].toggle:active {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:active {
             /*    */
         }
 
-        input[type="checkbox"].toggle:hover {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:hover {
             /*    */
         }
 
-        input[type="checkbox"].toggle:focus {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:focus {
             /*    */
             -webkit-box-shadow: none;
             box-shadow: none;
         }
 
-        input[type="checkbox"].toggle:focus-within {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:focus-within {
             /*    */
         }
 
-        input[type="checkbox"].toggle:focus-visible {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:focus-visible {
             /*    */
         }
 
-        input[type="checkbox"].toggle:visited {
+        fieldset.toggle-checkbox input[type="checkbox"].toggle:visited {
             /*    */
         }
 
-        .toggle-checkbox, .toggle-button, .toggle-radio {
+        fieldset.toggle-checkbox {
             display: flex;
             align-items: center;
         }
-        .toggle-checkbox label {
+        fieldset.toggle-checkbox label {
             font-size: xxx-large;
             padding: 0 10px 0 10px;
         }
     </style>
 </head>
 <body>
+<form action="http://localhost:9090" target="_blank" method="get" onsubmit="console.table();">
+    <style>
+        fieldset.toggle-test button {
+            border-radius: 0;
+            background-color: lightgray;
+        }
+        fieldset.toggle-test button[data-checked="false"] {
+            background-color: darkgray;
+        }
+        fieldset.toggle-test button[data-checked="true"] {
+            background-color: gray;
+        }
+        fieldset.toggle-test button input {
+            border-radius: 0;
+            border: none;
+            background-color: transparent;
+        }
+        fieldset.toggle-test button[data-checked="false"] input {
+            text-align: left;
+        }
+        fieldset.toggle-test button[data-checked="true"] input {
+            text-align: right;
+        }
+        fieldset.toggle-test button span {
+            /* display: block; */
+            /* padding: 0 100% 0 100%; */
+            /* content: ""; */
+            min-width: 100vh;
+            width: 100vh;
+            max-width: 100vh;
+            min-height: 100vh;
+            height: 100vh;
+            max-height: 100vh;
+            background-color: white;
+            border-radius: 50%;
+        }
+        fieldset.toggle-test button[data-checked="false"] span {
+            right: 0;
+        }
+        fieldset.toggle-test button[data-checked="true"] span {
+            left: 0;
+        }
 
+        /* The switch - the box around the slider */
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+
+        /* The slider */
+        .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+
+        .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+
+        input:checked + .slider {
+        background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+        border-radius: 34px;
+        }
+
+        .slider.round:before {
+        border-radius: 50%;
+        }
+    </style>
+    <fieldset class="toggle-simple">
+        <legend>Toggle Simple:</legend>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+    </fieldset>
+    <fieldset class="toggle-test">
+        <legend>Toggle Button Input:</legend>
+        <label onclick="document.getElementById('toggle').dataset.checked = 'false';document.getElementById('toggle-input').value = 'Off';">Off</label>
+        <button class="toggle" type="button" id="toggle" name="toggle" value=""
+            data-action="aria-switch" data-checked="false"
+            aria-label="Toggle Button" aria-labelledby="toggle-label" aria-checked="false" role="switch"
+            onclick="this.dataset.checked = this.dataset.checked === 'true' ? 'false' : 'true';document.getElementById('toggle-input').value = this.dataset.checked === 'true' ? 'On' : 'Off';"
+        >
+            <input id="toggle-input" name="toggle-input" value="Off" />
+            <span>&nbsp;</span>
+        </button>
+        <label onclick="document.getElementById('toggle').dataset.checked = 'true';document.getElementById('toggle-input').value = 'On';">On</label>
+    </fieldset>
+    <input type="submit" value="Submit">
+</form>
 <!--<input class="toggle xs" type="checkbox" />-->
 <!--<input class="toggle xs" type="checkbox" data-state="indeterminate" />-->
 <!--<input class="toggle xs" type="checkbox" data-state="indeterminate" checked />-->
@@ -249,18 +376,19 @@
 <br />
 
 
-<div class="toggle-checkbox" id="toggle-1">
+<fieldset class="toggle-checkbox">
+    <legend>Toggle Checkbox:</legend>
     <!-- TODO: Checked Side = Left || Right -->
-    <label for="toggle-1-input" id="toggle-1-label-left"
+    <label for="toggle-1"
            onclick="/*event.preventDefault();*/
            setTimeout(() => {
-               document.getElementById('toggle-1-input').checked = false;
-               document.getElementById('toggle-1-input').indeterminate = false;
-               document.getElementById('toggle-1-input').dataset.state = document.getElementById('toggle-1-input').indeterminate ? 'indeterminate' : document.getElementById('toggle-1-input').checked ? 'checked' : 'unchecked';
+               document.getElementById('toggle-1').checked = false;
+               document.getElementById('toggle-1').indeterminate = false;
+               document.getElementById('toggle-1').dataset.state = document.getElementById('toggle-1').indeterminate ? 'indeterminate' : document.getElementById('toggle-1').checked ? 'checked' : 'unchecked';
                }, 0);"
     >Off</label>
     <!-- TODO: Labels inside of toggle - Left && Right -->
-    <input class="toggle" type="checkbox" id="toggle-1-input" name="toggle-1-input" value=""
+    <input class="toggle" type="checkbox" id="toggle-1" name="toggle-1" value=""
            data-state="" data-label-checked="On" data-label-unchecked="Off" data-label-indeterminate=""
            ondblclick="console.log(`DBL CLICK: ${this.checked}`); this.checked=!this.checked; this.indeterminate = !this.indeterminate;"
            onclick="console.log(`CLICK: ${this.checked}`)"
@@ -274,53 +402,53 @@
         <span></span>
     </input>
     <!-- TODO: Checked Side = Left || Right -->
-    <label for="toggle-1-input" id="toggle-1-label-right"
+    <label for="toggle-1"
            onclick="/*event.preventDefault();*/
            setTimeout(() => {
-               document.getElementById('toggle-1-input').checked = true;
-               document.getElementById('toggle-1-input').indeterminate = false;
-               document.getElementById('toggle-1-input').dataset.state = document.getElementById('toggle-1-input').indeterminate ? 'indeterminate' : document.getElementById('toggle-1-input').checked ? 'checked' : 'unchecked';
+               document.getElementById('toggle-1').checked = true;
+               document.getElementById('toggle-1').indeterminate = false;
+               document.getElementById('toggle-1').dataset.state = document.getElementById('toggle-1').indeterminate ? 'indeterminate' : document.getElementById('toggle-1').checked ? 'checked' : 'unchecked';
                }, 0);"
     >On</label>
-</div>
-<input type="button" value="Set to Indeterminate" onclick="document.getElementById('toggle-1-input').indeterminate = !document.getElementById('toggle-1-input').indeterminate;"></button>
+</fieldset>
+<input type="button" value="Set to Indeterminate" onclick="document.getElementById('toggle-1').indeterminate = !document.getElementById('toggle-1').indeterminate;"></button>
 
 <br />
 <br />
 <br />
 
 <style>
-    button[type="button"].toggle {
+    fieldset.toggle-button button[type="button"].toggle {
         /* -webkit-appearance: none; */
         /* -moz-appearance: none; */
         /* appearance: none; */
         overflow: hidden;
 
-        display: inline-block;
+        /* display: inline-block; */
         position: relative;
         transition: background 0.1s ease-in-out;
-        clear: both;
-        float: left;
+        /* clear: both; */
+        /* float: left; */
     }
-    button[type="button"].toggle, button[type="button"][data-checked="indeterminate"].toggle {
+    fieldset.toggle-button button[type="button"].toggle, fieldset.toggle-button button[type="button"][data-checked="indeterminate"].toggle {
         /* border: 0; */
         /*border: none;*/
         border: 2px solid black;
         background: lightgray;
     }
-    button[type="button"][data-checked="false"].toggle {
+    fieldset.toggle-button button[type="button"][data-checked="false"].toggle {
         /* border: 0; */
         /*border: none;*/
         border: 2px solid black;
         background: darkgray;
     }
-    button[type="button"][data-checked="true"].toggle {
+    fieldset.toggle-button button[type="button"][data-checked="true"].toggle {
         /* border: 0; */
         /*border: none;*/
         border: 2px solid black;
         background: gray;
     }
-    button[type="button"].toggle, button[type="button"].toggle.md {
+    fieldset.toggle-button button[type="button"].toggle, fieldset.toggle-button button[type="button"].toggle.md {
         max-width: 50px;
         width: 50px;
         min-width: 50px;
@@ -329,7 +457,7 @@
         min-height: 25px;
         border-radius: 25px;
     }
-    button[type="button"].toggle.xs {
+    fieldset.toggle-button button[type="button"].toggle.xs {
         max-width: 20px;
         width: 20px;
         min-width: 20px;
@@ -338,7 +466,7 @@
         min-height: 10px;
         border-radius: 10px;
     }
-    button[type="button"].toggle.sm {
+    fieldset.toggle-button button[type="button"].toggle.sm {
         max-width: 40px;
         width: 40px;
         min-width: 40px;
@@ -347,7 +475,7 @@
         min-height: 20px;
         border-radius: 10px;
     }
-    button[type="button"].toggle.lg {
+    fieldset.toggle-button button[type="button"].toggle.lg {
         max-width: 60px;
         width: 60px;
         min-width: 60px;
@@ -356,7 +484,7 @@
         min-height: 30px;
         border-radius: 30px;
     }
-    button[type="button"].toggle.xl {
+    fieldset.toggle-button button[type="button"].toggle.xl {
         max-width: 80px;
         width: 80px;
         min-width: 80px;
@@ -366,34 +494,34 @@
         border-radius: 40px;
     }
 
-    button[type="button"].toggle span {
+    fieldset.toggle-button button[type="button"].toggle span {
         background: white;
         border: 1px solid black;
         border-radius: 50%;
         height: 17px;
         width: 17px;
-        display: inline-block;
         pointer-events: none;
+        display: inline-block;
         position: absolute;
     }
     
-    button[type="button"][data-checked="false"].toggle span {
+    fieldset.toggle-button button[type="button"][data-checked="false"].toggle span {
         top: 1px;
         left: 1px;
         -webkit-transition: 0.4s;
         -o-transition: 0.4s;
         transition: 0.4s;
     }
-    button[type="button"][data-checked="false"].toggle span:after {
+    fieldset.toggle-button button[type="button"][data-checked="false"].toggle span:after {
         content: 'Off';
-        display: block;
         color: black;
+        display: block;
         position: absolute;
         right: -20px;
         top: 3px;
     }
     
-    button[type="button"][data-checked="true"].toggle span {
+    fieldset.toggle-button button[type="button"][data-checked="true"].toggle span {
         top: 1px;
         left: 26px;
         -webkit-transition: 0.4s;
@@ -402,14 +530,14 @@
     }
     button[type="button"][data-checked="true"].toggle span:before {
         content: 'On';
-        display: block;
         color: black;
+        display: block;
         position: absolute;
         left: -20px;
         top: 3px;
     }
 
-    button[type="button"][data-checked="indeterminate"].toggle span {
+    fieldset.toggle-button button[type="button"][data-checked="indeterminate"].toggle span {
         top: 1px;
         left: 14px;
         -webkit-transition: 0.4s;
@@ -417,23 +545,28 @@
         transition: 0.4s;
     }
 
-    .toggle-button label {
+    fieldset.toggle-button {
+        display: flex;
+        align-items: center;
+    }
+    fieldset.toggle-button label {
         font-size: xxx-large;
         padding: 0 10px 0 10px;
     }
 </style>
-<div class="toggle-button">
-    <label id="toggle_label" onclick="document.getElementById('toggle-2-button').dataset.checked = 'false';">Off</label>
-    <button class="toggle" type="button" id="toggle-2-button" name="toggle-2-button"
+<fieldset class="toggle-button">
+    <legend>Toggle Button:</legend>
+    <label id="toggle-2-label" for="toggle-2" onclick="document.getElementById('toggle-2').dataset.checked = 'true';">Off</label>
+    <button class="toggle" type="button" id="toggle-2" name="toggle-2"
         data-action="aria-switch" data-checked="false"
-        aria-label="Toggle Text" aria-labelledby="toggle_label" aria-checked="false" role="switch"
+        aria-label="Toggle Button" aria-labelledby="toggle-2-label" aria-checked="false" role="switch"
         onclick="this.dataset.checked = this.dataset.checked === 'true' ? 'false' : 'true';"
     >
         <span></span>
     </button>
-    <label id="toggle_label" onclick="document.getElementById('toggle-2-button').dataset.checked = 'true';">On</label>
-</div>
-<input type="button" value="Set to Indeterminate" onclick="document.getElementById('toggle-2-button').dataset.checked = 'indeterminate';"></button>
+    <label id="toggle-2-label" for="toggle-2" onclick="document.getElementById('toggle-2').dataset.checked = 'false';">On</label>
+</fieldset>
+<input type="button" value="Set to Indeterminate" onclick="document.getElementById('toggle-2').dataset.checked = 'indeterminate';"></button>
 
 <br />
 <br />
@@ -491,6 +624,11 @@
         padding-right: 5px;
         flex-grow: 1;
         text-align: end;
+    }
+
+    fieldset.toggle-radio {
+        display: flex;
+        align-items: center;
     }
     .toggle-radio label {
         color: white;
